@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"www.starsea.club","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/avatar.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"上次写博客，还是上一次"},"scroll":{"progress_bar":false,"percent":true}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/avatar.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"上次写博客，还是上一次"},"scroll":{"progress_bar":false,"percent":true}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -167,6 +167,69 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2021/11/21/hexo%E4%BD%BF%E7%94%A8rsync%E9%83%A8%E7%BD%B2%E5%A1%AB%E5%9D%91%E4%B9%8B%E8%B7%AF/">
+                        hexo使用rsync部署填坑之路
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        hexo 可快速上手做出自己的博客网站，部署方式 也非常多。在部署到github的时候基本不会遇到什么问题，但是当选择使用rsync部署到阿里云ECS的时候，windows下部署的坑就一个个的出现了。
+遇到的问题首先看下官方的部署教程， 只有下面一小...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Nov 21 2021 21:32:16 GMT+0800">2021-11-21</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/hexo/">hexo</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/ssh/">ssh</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/11/21/hexo%E4%BD%BF%E7%94%A8rsync%E9%83%A8%E7%BD%B2%E5%A1%AB%E5%9D%91%E4%B9%8B%E8%B7%AF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2021/11/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
                         设计模式
                     </a>
@@ -174,8 +237,8 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        设计模式单例模式惰性单例模式封装
-123456var getSingle = function (fn) &#123;    var result;    return function () &#123;        return result ...
+                        单例模式惰性单例模式封装
+123456var getSingle = function (fn) &#123;    var result;    return function () &#123;        return result || (...
                     
                 </div>
 
@@ -227,8 +290,8 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        vue-virtual-scroller源码分析该插件目的当页面数据量较大，例如有几千条数据渲染的时候，dom过多产生滚动卡顿的现象。此时使用该插件可以动态渲染可视区的dom，滚动时实时计算和变更可视区显示的数据。
-原理根据可视区的高度以及items...
+                        该插件目的当页面数据量较大，例如有几千条数据渲染的时候，dom过多产生滚动卡顿的现象。此时使用该插件可以动态渲染可视区的dom，滚动时实时计算和变更可视区显示的数据。
+原理根据可视区的高度以及items中每一项的高度(itemSize，可为高度或者是...
                     
                 </div>
 
