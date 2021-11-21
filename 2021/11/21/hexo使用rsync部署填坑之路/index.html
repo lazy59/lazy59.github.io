@@ -244,7 +244,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="../images/rsync1.png"
+                     data-src="/images/rsync1.png"
                       alt="安装"
                 ></p>
 <p>ok，先没管 <code>home</code> 目录，先将 <code>bin</code> 目录添加到环境变量，以便访问到 <code>rsync.exe</code> 文件。之后再来 <code>hexo d</code> 一次。好，出现了如下报错：</p>
@@ -254,7 +254,7 @@
 <p>同时双击 <code>bin</code> 目录下的 <code>ssh-keygen.exe</code> 文件，之后一路回车，则在 <code>/home/lazy5/.ssh</code> 目录下生成密钥对，目录如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="../images/rsync4.png"
+                     data-src="/images/rsync4.png"
                       alt=".ssh目录"
                 ></p>
 <p>将生成的公钥添加到服务器对应用户的 <code>authorized_keys</code> 中，然后再部署一次试试。还是失败了，查看下面的 <strong>无权限报错</strong></p>
@@ -264,7 +264,7 @@
 <p>因此，我删除了 <code>/home/lazy5/.ssh/id_rsa</code> 除了所有者 <code>lazy5</code> 以外的权限。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="../images/rsync5.png"
+                     data-src="/images/rsync5.png"
                       alt="删除权限"
                 ></p>
 <p>以上设置之后，权限过高的问题就没有了。理论上这样部署就没有了，但是在实际操作中还遇到了其他权限问题，具体截图没有了，列举如下：</p>
@@ -281,20 +281,20 @@
 <h3 id="成功上传之后域名访问403"><a href="#成功上传之后域名访问403" class="headerlink" title="成功上传之后域名访问403"></a>成功上传之后域名访问403</h3><p>一切大功告成，访问网站出现了403，估计是权限的问题了。查看hexo目录下的文件权限如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="../images/rsync2.png"
+                     data-src="/images/rsync2.png"
                       alt="hexo目录权限"
                 ></p>
 <p><code>chmod 777 hexo -R</code> 之后可以正常访问，但是每次部署后都需要登录服务器修改权限，这种方式肯定是不行的。那rsync为什么要改权限呢，依据是什么？前面说到了部署到服务器的文件是lazy5权限，那是不是文件访问的权限是不是也是直接用了本地文件权限。</p>
 <p>查看本地项目目录属性，权限中没有 <code>Everyone</code>，因此添加上去再说。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="../images/rsync.png"
+                     data-src="/images/rsync.png"
                       alt="修改项目目录权限"
                 ></p>
 <p>重新部署后，终于权限正常了！<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="../images/rsync3.png"
+                     data-src="/images/rsync3.png"
                       alt="权限正常"
                 ></p>
 <h2 id="后语"><a href="#后语" class="headerlink" title="后语"></a>后语</h2><p>以上就是 <code>hexo</code> 中使用 <code>rsync</code> 遇到坑的大致记录，其中由于填坑过程遗漏了很多记录，所以不一定全面，后续有再遇到会继续补充。另外由于坑太多，感觉这里直接 <code>pm2</code> 部署，在服务器上再 <code>hexo generate</code> 生成，估计也能达到一样的效果，后续可尝试并记录下。</p>
