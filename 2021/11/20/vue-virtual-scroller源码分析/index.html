@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Star Sea">
+    
+    <title>
+        
+            vue-virtual-scroller源码分析 |
+        
+        StarSea
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.starsea.club","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/avatar.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"上次写博客，还是上一次"},"scroll":{"progress_bar":false,"percent":true}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                StarSea
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">vue-virtual-scroller源码分析</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Star Sea</span>
+                        
+                            <span class="author-label">Trainee</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-11-20 14:45:52
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="vue-virtual-scroller源码分析"><a href="#vue-virtual-scroller源码分析" class="headerlink" title="vue-virtual-scroller源码分析"></a>vue-virtual-scroller源码分析</h1><h2 id="该插件目的"><a href="#该插件目的" class="headerlink" title="该插件目的"></a>该插件目的</h2><p>当页面数据量较大，例如有几千条数据渲染的时候，dom过多产生滚动卡顿的现象。此时使用该插件可以动态渲染可视区的dom，滚动时实时计算和变更可视区显示的数据。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>根据可视区的高度以及items中每一项的高度(itemSize，可为高度或者是横向滑动的宽度)来决定页面展示多少个item，能显示的item包装后放到了pool数组中进行渲染，页面滚动的时候动态的修改pool数组。为了在滚动的时候尽可能的减少开销，pool中超出范围的view会回收到复用池，pool中新增的view会优先从复用池中取出view，如果没有复用的才会新增。</p>
+<h2 id="页面中数据流动"><a href="#页面中数据流动" class="headerlink" title="页面中数据流动"></a>页面中数据流动</h2><p>为了达到动态渲染和dom复用的目的，主要维护了一下三个存放对应item的池子。</p>
+<ul>
+<li><code>pool</code>：当前页面显示得<strong>视图池</strong>，存储当前页面要渲染得数据，即pool是tempalte中渲染真实使用到的。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">&quot;view of pool&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">&quot;view.nr.id&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:style</span>=<span class="string">&quot;ready ? &#123; transform: `translate$&#123;direction === &#x27;vertical&#x27; ? &#x27;Y&#x27; : &#x27;X&#x27;&#125;($&#123;view.position&#125;px)` &#125; : null&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;vue-recycle-scroller__item-view&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:class</span>=<span class="string">&quot;&#123; hover: hoverKey === view.nr.key &#125;&quot;</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">mouseenter</span>=<span class="string">&quot;hoverKey = view.nr.key&quot;</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">mouseleave</span>=<span class="string">&quot;hoverKey = null&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><code>$_views</code>: 和pool对应，每一次addView新增一个视图得时候，除了要把视图放到pool中，还要放一份到views中。<strong>只是views是map，数据字典方便查找view</strong>，当页面滚动得时候，会取范围在startIndex和endIndex之间得view，每个view先去views中找，这样比在pool中遍历效率要高，如果找到了说明当前view一直在可视区内，这个时候直接显示复用views中得即可。如果在views中没找到，说明是新增得view，则先去复用池中根据type找，找到则复用，找不到则addView新增，新增之后views中也要加进去。</li>
+<li><code>$_unusedViews</code>: <strong>复用池</strong>，根据type存储不在可视区的视图。每次滚动先把超出可视区的丢到unusedViews，丢完之后。进行startIndex和endIndex之间的可视区遍历，在新增view出现的时候优先在unusedViews中找，找到就取出来。找不到则走addView</li>
+</ul>
+<blockquote>
+<p>以下是初始化的时候对数据的初始化</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">created () &#123;</span><br><span class="line">    <span class="comment">// 记录刷新完成的开始索引</span></span><br><span class="line">    <span class="built_in">this</span>.$_startIndex = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 记录刷新完成的结束索引</span></span><br><span class="line">    <span class="built_in">this</span>.$_endIndex = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 页面上所有展示的视图，与pool对应，方便快速查找</span></span><br><span class="line">    <span class="built_in">this</span>.$_views = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    <span class="comment">// 复用池：根据视图的type暂存不在使用的view</span></span><br><span class="line">    <span class="built_in">this</span>.$_unusedViews = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    <span class="comment">// 标记是否正在滚动，用于滚动节流</span></span><br><span class="line">    <span class="built_in">this</span>.$_scrollDirty = <span class="literal">false</span></span><br><span class="line">    <span class="comment">// 记录上一次滚到了哪里start值</span></span><br><span class="line">    <span class="built_in">this</span>.$_lastUpdateScrollPosition = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// In SSR mode, we also prerender the same number of item for the first render</span></span><br><span class="line">    <span class="comment">// to avoir mismatch between server and client templates</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.prerender) &#123;</span><br><span class="line">      <span class="built_in">this</span>.$_prerender = <span class="literal">true</span></span><br><span class="line">      <span class="built_in">this</span>.updateVisibleItems(<span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h2><p>整个插件最主要的原理集中在updateVisibleItems(视图刷新函数)，该函数会在初始化、页面滚动、页面resize等情况下触发。总共的过程分为以下四步：</p>
+<ol>
+<li><p>计算可视范围：获取scroll信息后，先算出此次需要展现到可视区的items索引范围，即startIndex和endIndex。</p>
+<ul>
+<li>获取当前展示部分的start、end值, 并判断是否进行了足够的滚动。滚动较小则可视区展示的items不变动，不需要刷新。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前可视区的范围，getScroll根据scrollerTop等计算</span></span><br><span class="line"><span class="keyword">const</span> scroll = <span class="built_in">this</span>.getScroll()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Skip update if use hasn&#x27;t scrolled enough</span></span><br><span class="line">    <span class="keyword">if</span> (checkPositionDiff) &#123;</span><br><span class="line">      <span class="comment">// 此处判断当前滚动的范围未超出设置的itemSize，即没有超过一个view，此时pool不需要改变，则此次不进行update操作</span></span><br><span class="line">      <span class="keyword">let</span> positionDiff = scroll.start - <span class="built_in">this</span>.$_lastUpdateScrollPosition</span><br><span class="line">      <span class="keyword">if</span> (positionDiff &lt; <span class="number">0</span>) positionDiff = -positionDiff</span><br><span class="line">      <span class="keyword">if</span> ((itemSize === <span class="literal">null</span> &amp;&amp; positionDiff &lt; minItemSize) || positionDiff &lt; itemSize) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="attr">continuous</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 刷新此次滚动后的位置信息</span></span><br><span class="line">    <span class="built_in">this</span>.$_lastUpdateScrollPosition = scroll.start</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算偏移量，默认buffer为200，可自定义</span></span><br><span class="line">    <span class="keyword">const</span> buffer = <span class="built_in">this</span>.buffer</span><br><span class="line">    scroll.start -= buffer</span><br><span class="line">    scroll.end += buffer</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Variable size mode</span></span><br><span class="line">    <span class="comment">// 高度可变模式</span></span><br><span class="line">    <span class="comment">// 因为每个item的高度不固定，无法直接用scroll.start得到startIndex。所以通过二分法快速查找到第一个出现在可视区的视图，即startIndex。</span></span><br><span class="line">    <span class="comment">// 由于计算属性已缓存了可变高度的所有size记录，二分法查找的目的等价于查找到sizes中的索引，该索引满足index项的accumulator小于scroll.start，index+1项的accumulator大于scroll.start，则为刚滑到可视区的startIndex</span></span><br><span class="line">    <span class="keyword">if</span> (itemSize === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> h</span><br><span class="line">      <span class="keyword">let</span> a = <span class="number">0</span></span><br><span class="line">      <span class="keyword">let</span> b = count - <span class="number">1</span></span><br><span class="line">      <span class="comment">// 此处记录二分查找起始点</span></span><br><span class="line">      <span class="keyword">let</span> i = ~~(count / <span class="number">2</span>)</span><br><span class="line">      <span class="keyword">let</span> oldI</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Searching for startIndex</span></span><br><span class="line">      <span class="keyword">do</span> &#123;</span><br><span class="line">        oldI = i</span><br><span class="line">        h = sizes[i].accumulator</span><br><span class="line">        <span class="keyword">if</span> (h &lt; scroll.start) &#123;</span><br><span class="line">          <span class="comment">// 说明此次i取小了，则最小值设置为i</span></span><br><span class="line">          a = i</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i &lt; count - <span class="number">1</span> &amp;&amp; sizes[i + <span class="number">1</span>].accumulator &gt; scroll.start) &#123;</span><br><span class="line">          <span class="comment">// 说明i、i+1都超出了范围，则最大值设置为i，继续查找</span></span><br><span class="line">          b = i</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 继续二分</span></span><br><span class="line">        i = ~~((a + b) / <span class="number">2</span>)</span><br><span class="line">      &#125; <span class="keyword">while</span> (i !== oldI)</span><br><span class="line">      i &lt; <span class="number">0</span> &amp;&amp; (i = <span class="number">0</span>)</span><br><span class="line">      startIndex = i</span><br><span class="line"></span><br><span class="line">      <span class="comment">// For container style</span></span><br><span class="line">      totalSize = sizes[count - <span class="number">1</span>].accumulator</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Searching for endIndex</span></span><br><span class="line">      <span class="comment">// 找到刚好超出的endIndex</span></span><br><span class="line">      <span class="keyword">for</span> (endIndex = i; endIndex &lt; count &amp;&amp; sizes[endIndex].accumulator &lt; scroll.end; endIndex++);</span><br><span class="line">      <span class="keyword">if</span> (endIndex === -<span class="number">1</span>) &#123;</span><br><span class="line">        endIndex = items.length - <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        endIndex++</span><br><span class="line">        <span class="comment">// Bounds</span></span><br><span class="line">        endIndex &gt; count &amp;&amp; (endIndex = count)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// Fixed size mode</span></span><br><span class="line">      <span class="comment">// 固定高度：根据滚动的距离计算固定itemSize的startIndex和endIndex</span></span><br><span class="line">      startIndex = ~~(scroll.start / itemSize)</span><br><span class="line">      endIndex = <span class="built_in">Math</span>.ceil(scroll.end / itemSize)</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Bounds</span></span><br><span class="line">      startIndex &lt; <span class="number">0</span> &amp;&amp; (startIndex = <span class="number">0</span>)</span><br><span class="line">      endIndex &gt; count &amp;&amp; (endIndex = count)</span><br><span class="line"></span><br><span class="line">      totalSize = count * itemSize</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (endIndex - startIndex &gt; config.itemsLimit) &#123;</span><br><span class="line">    <span class="built_in">this</span>.itemsLimitError()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 刷新items的总高度, totalSize会给到外层盒子的高度，为了制造出滚动条</span></span><br><span class="line">  <span class="built_in">this</span>.totalSize = totalSize</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>对于可变高度，计算属性会优先维护一个sizes表，已记录对应索引的size累计值。此操作目的是为了后续根据索引即可拿到size之和，而不必每次都重新计算。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">sizes () &#123;</span><br><span class="line">  <span class="comment">// itemSize不提供，则进入variable size mode</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.itemSize === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> sizes = &#123;</span><br><span class="line">      <span class="string">&#x27;-1&#x27;</span>: &#123; <span class="attr">accumulator</span>: <span class="number">0</span> &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> items = <span class="built_in">this</span>.items</span><br><span class="line">    <span class="keyword">const</span> field = <span class="built_in">this</span>.sizeField</span><br><span class="line">    <span class="keyword">const</span> minItemSize = <span class="built_in">this</span>.minItemSize</span><br><span class="line">    <span class="keyword">let</span> computedMinSize = <span class="number">10000</span></span><br><span class="line">    <span class="keyword">let</span> accumulator = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> current</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = items.length; i &lt; l; i++) &#123;</span><br><span class="line">      current = items[i][field] || minItemSize</span><br><span class="line">      <span class="keyword">if</span> (current &lt; computedMinSize) &#123;</span><br><span class="line">        computedMinSize = current</span><br><span class="line">      &#125;</span><br><span class="line">      accumulator += current</span><br><span class="line">      sizes[i] = &#123; accumulator, <span class="attr">size</span>: current &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// eslint-disable-next-line</span></span><br><span class="line">    <span class="built_in">this</span>.$_computedMinItemSize = computedMinSize</span><br><span class="line">    <span class="keyword">return</span> sizes</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>视图回收：遍历pool中视图，判断view的索引超出startIndex、endIndex范围，则走到unuseView函数进行视图回收，放到复用池unusedViews。(此时放到复用池只是放的引用，仍指向pool中对应的元素，不会改变pool元素个数，只改对应元素的属性</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">this</span>.$_continuous !== continuous) &#123;</span><br><span class="line">    <span class="keyword">if</span> (continuous) &#123;</span><br><span class="line">        <span class="comment">// 不是连续滑动，则页面出现了大的改变，初始化数据</span></span><br><span class="line">        views.clear()</span><br><span class="line">        unusedViews.clear()</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = pool.length; i &lt; l; i++) &#123;</span><br><span class="line">            <span class="comment">// 将当前显示的view回收</span></span><br><span class="line">            view = pool[i]</span><br><span class="line">            <span class="built_in">this</span>.unuseView(view)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.$_continuous = continuous</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (continuous) &#123;</span><br><span class="line">    <span class="comment">// 此时为连续滑动，遍历回收pool</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = pool.length; i &lt; l; i++) &#123;</span><br><span class="line">        view = pool[i]</span><br><span class="line">        <span class="keyword">if</span> (view.nr.used) &#123;</span><br><span class="line">            <span class="comment">// Update view item index</span></span><br><span class="line">            <span class="keyword">if</span> (checkItem) &#123;</span><br><span class="line">                view.nr.index = items.findIndex(</span><br><span class="line">                <span class="function"><span class="params">item</span> =&gt;</span> keyField ? item[keyField] === view.item[keyField] : item === view.item,</span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Check if index is still in visible range</span></span><br><span class="line">            <span class="comment">// 此处判断如果，index已经超出范围，则进行回收</span></span><br><span class="line">            <span class="keyword">if</span> (</span><br><span class="line">                view.nr.index === -<span class="number">1</span> ||</span><br><span class="line">                view.nr.index &lt; startIndex ||</span><br><span class="line">                view.nr.index &gt;= endIndex</span><br><span class="line">            ) &#123;</span><br><span class="line">                <span class="built_in">this</span>.unuseView(view)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下为unuseView的实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">unuseView (view, fake = <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="comment">// 根据view的类别放到缓存池</span></span><br><span class="line">    <span class="keyword">const</span> unusedViews = <span class="built_in">this</span>.$_unusedViews</span><br><span class="line">    <span class="keyword">const</span> type = view.nr.type</span><br><span class="line">    <span class="comment">// 根据type类别进行存放，后续复用也是根据type去取</span></span><br><span class="line">    <span class="keyword">let</span> unusedPool = unusedViews.get(type)</span><br><span class="line">    <span class="keyword">if</span> (!unusedPool) &#123;</span><br><span class="line">        unusedPool = []</span><br><span class="line">        unusedViews.set(type, unusedPool)</span><br><span class="line">    &#125;</span><br><span class="line">    unusedPool.push(view)</span><br><span class="line">    <span class="keyword">if</span> (!fake) &#123;</span><br><span class="line">        <span class="comment">// 此时将视图回收设置位置（让view不可见），且used置为false</span></span><br><span class="line">        view.nr.used = <span class="literal">false</span></span><br><span class="line">        view.position = -<span class="number">9999</span></span><br><span class="line">        <span class="built_in">this</span>.$_views.delete(view.nr.key)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>更新视图：在startIndex和endIndex之间遍历，每次拿到items中的一个item，开始包装item后刷到pool中。<ul>
+<li>根据item取views字典中查找，如果找到了，则当前view还在可视区，只是滚动了，则直接复用view即可。</li>
+<li>在views中未找到，则去unusedViews中找有没有可复用的view，有则使用复用视图，修改view的item、key、index等属性后即可。且后面重新设置views中对应字典，方便后面查找。</li>
+<li>如果unusedViews中未找到，则无复用view。此时调用addView新增视图，view增加item属性关联到items、position属性后面用于transform样式、增加used、key、id、index等标识。新增视图push到pool中，同时在views中增加字典。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> item, type, unusedPool</span><br><span class="line"><span class="keyword">let</span> v</span><br><span class="line"><span class="comment">// 在可视区范围内遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = startIndex; i &lt; endIndex; i++) &#123;</span><br><span class="line">  item = items[i]</span><br><span class="line">  <span class="keyword">const</span> key = keyField ? item[keyField] : item</span><br><span class="line">  <span class="keyword">if</span> (key == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">`Key is <span class="subst">$&#123;key&#125;</span> on item (keyField is &#x27;<span class="subst">$&#123;keyField&#125;</span>&#x27;)`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 3.1 根据item取views字典中查找，如果找到了，则当前view还在可视区，只是滚动了，则直接复用view即可。</span></span><br><span class="line">  view = views.get(key)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 此处size不存在，则高度不存在，则不加到pool，因为显示不出来</span></span><br><span class="line">  <span class="keyword">if</span> (!itemSize &amp;&amp; !sizes[i].size) &#123;</span><br><span class="line">    <span class="keyword">if</span> (view) <span class="built_in">this</span>.unuseView(view)</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// No view assigned to item</span></span><br><span class="line">  <span class="comment">// 3.2 在views中未找到，则去unusedViews中找有没有可复用的view，有则使用复用视图，修改view的item、key、index等属性后即可。且后面重新设置views中对应字典，方便后面查找。</span></span><br><span class="line">  <span class="keyword">if</span> (!view) &#123;</span><br><span class="line">    type = item[typeField]</span><br><span class="line">    unusedPool = unusedViews.get(type)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (continuous) &#123;</span><br><span class="line">      <span class="comment">// Reuse existing view</span></span><br><span class="line">      <span class="comment">// 根据类型找出复用池中可用的的视图，修改索引等进行复用</span></span><br><span class="line">      <span class="keyword">if</span> (unusedPool &amp;&amp; unusedPool.length) &#123;</span><br><span class="line">        view = unusedPool.pop()</span><br><span class="line">        view.item = item</span><br><span class="line">        view.nr.used = <span class="literal">true</span></span><br><span class="line">        view.nr.index = i</span><br><span class="line">        view.nr.key = key</span><br><span class="line">        view.nr.type = type</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 复用池中不存在则新增</span></span><br><span class="line">        <span class="comment">// 3.3 如果unusedViews中未找到，则无复用view。此时调用addView新增视图，view增加item属性关联到items、position属性后面用于transform样式、增加used、key、id、index等标识。新增视图push到pool中，同时在views中增加字典。</span></span><br><span class="line">        view = <span class="built_in">this</span>.addView(pool, i, item, key, type)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// Use existing view</span></span><br><span class="line">      <span class="comment">// We don&#x27;t care if they are already used</span></span><br><span class="line">      <span class="comment">// because we are not in continous scrolling</span></span><br><span class="line">      <span class="comment">// 因为不是连续滑动，无交叉，不用考虑使用占用的问题，直接从对应复用池中的第一个开始找</span></span><br><span class="line">      v = unusedIndex.get(type) || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!unusedPool || v &gt;= unusedPool.length) &#123;</span><br><span class="line">        view = <span class="built_in">this</span>.addView(pool, i, item, key, type)</span><br><span class="line">        <span class="built_in">this</span>.unuseView(view, <span class="literal">true</span>)</span><br><span class="line">        unusedPool = unusedViews.get(type)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      view = unusedPool[v]</span><br><span class="line">      view.item = item</span><br><span class="line">      view.nr.used = <span class="literal">true</span></span><br><span class="line">      view.nr.index = i</span><br><span class="line">      view.nr.key = key</span><br><span class="line">      view.nr.type = type</span><br><span class="line">      unusedIndex.set(type, v + <span class="number">1</span>)</span><br><span class="line">      v++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 放到views池中，此处对应字典，方便后续查找</span></span><br><span class="line">    views.set(key, view)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 当前视图中已经存在，则直接重新used即可</span></span><br><span class="line">    view.nr.used = <span class="literal">true</span></span><br><span class="line">    view.item = item</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Update position</span></span><br><span class="line">  <span class="comment">// 刷新视图位置</span></span><br><span class="line">  <span class="keyword">if</span> (itemSize === <span class="literal">null</span>) &#123;</span><br><span class="line">    view.position = sizes[i - <span class="number">1</span>].accumulator</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    view.position = i * itemSize</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记录本地的索引</span></span><br><span class="line"><span class="built_in">this</span>.$_startIndex = startIndex</span><br><span class="line"><span class="built_in">this</span>.$_endIndex = endIndex</span><br></pre></td></tr></table></figure>
+
+<p>以下是addView的逻辑，复用池没有的时候走到addView新增视图：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">addView (pool, index, item, key, type) &#123;</span><br><span class="line"><span class="keyword">const</span> view = &#123;</span><br><span class="line">  item,</span><br><span class="line">  <span class="attr">position</span>: <span class="number">0</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> nonReactive = &#123;</span><br><span class="line">  <span class="attr">id</span>: uid++,</span><br><span class="line">  <span class="comment">// 此处的index对应传进来的源数据中的索引，方便后续视图复用后重新排序</span></span><br><span class="line">  index,</span><br><span class="line">  <span class="attr">used</span>: <span class="literal">true</span>,</span><br><span class="line">  key,</span><br><span class="line">  type,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(view, <span class="string">&#x27;nr&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">configurable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">value</span>: nonReactive,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 新增视图放到pool当中</span></span><br><span class="line">pool.push(view)</span><br><span class="line"><span class="keyword">return</span> view</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="4">
+<li>排序视图：以上处理完成之后pool可能是无序的，因为存在复用池复用等情况，因此要进行排序，调用sortViews方法会根据pool中视图存的index值进行重排。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">clearTimeout</span>(<span class="built_in">this</span>.$_sortTimer)</span><br><span class="line"><span class="built_in">this</span>.$_sortTimer = <span class="built_in">setTimeout</span>(<span class="built_in">this</span>.sortViews, <span class="number">300</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// sortViews的实现</span></span><br><span class="line">sortViews () &#123;</span><br><span class="line">  <span class="built_in">this</span>.pool.sort(<span class="function">(<span class="params">viewA, viewB</span>) =&gt;</span> viewA.nr.index - viewB.nr.index)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>该插件中<code>pool</code>、<code>$_unusedViews</code>、<code>$_views</code>三者对应的处理是很值得学习的。<br><code>$_unusedViews</code>的使用使得不比每次都去删减pool的数据达到渲染的目的，反观自己平时的开发，类似滚动、轮播等处理的方式，大概率直接截取源数据的某一范围给到pool达到刷新目的，效果是实现，但是有优化的空间。<br><code>$_views</code>的使用、以及计算属性sizes的使用均是为了降低复杂度，对于我们动不动就遍历、findIndex等处理，这种预先存储进map、或者预先存储累加值的做法更为优雅，同时也大大的降低了复杂度，减少在每次刷新视图中的遍历逻辑。</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">设计模式</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Star Sea</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+            <div class="icp-info info-item"><a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn">鄂ICP备19020693号</a></div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-virtual-scroller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-text">vue-virtual-scroller源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5%E6%8F%92%E4%BB%B6%E7%9B%AE%E7%9A%84"><span class="nav-text">该插件目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%95%B0%E6%8D%AE%E6%B5%81%E5%8A%A8"><span class="nav-text">页面中数据流动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-1"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text">结语</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
