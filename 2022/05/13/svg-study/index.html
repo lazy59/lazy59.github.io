@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Star Sea">
+    
+    <title>
+        
+            svg学习记录 |
+        
+        StarSea
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.starsea.club","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/avatar.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"上次写博客，还是上一次"},"scroll":{"progress_bar":false,"percent":true}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                StarSea
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">svg学习记录</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Star Sea</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-05-13 23:29:58
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/svg/">svg</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/SVG-js/">SVG.js</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>22 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="常用形状"><a href="#常用形状" class="headerlink" title="常用形状"></a>常用形状</h2><h3 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a>矩形</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;60&quot;</span> <span class="attr">y</span>=<span class="string">&quot;10&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;10&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;10&quot;</span> <span class="attr">width</span>=<span class="string">&quot;30&quot;</span> <span class="attr">height</span>=<span class="string">&quot;30&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x</td>
+<td>矩形左上角的x位置</td>
+</tr>
+<tr>
+<td>y</td>
+<td>矩形左上角的y位置</td>
+</tr>
+<tr>
+<td>width</td>
+<td>矩形的宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>矩形的高度</td>
+</tr>
+<tr>
+<td>rx</td>
+<td>圆角的x方位的半径</td>
+</tr>
+<tr>
+<td>ry</td>
+<td>圆角的y方位的半径</td>
+</tr>
+</tbody></table>
+<h3 id="圆形"><a href="#圆形" class="headerlink" title="圆形"></a>圆形</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;25&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;75&quot;</span> <span class="attr">r</span>=<span class="string">&quot;20&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>圆的半径</td>
+</tr>
+<tr>
+<td>cx</td>
+<td>圆心的x位置</td>
+</tr>
+<tr>
+<td>cy</td>
+<td>圆心的y位置</td>
+</tr>
+</tbody></table>
+<h3 id="椭圆"><a href="#椭圆" class="headerlink" title="椭圆"></a>椭圆</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ellipse</span> <span class="attr">cx</span>=<span class="string">&quot;75&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;75&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;20&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;5&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rx</td>
+<td>椭圆的x半径</td>
+</tr>
+<tr>
+<td>ry</td>
+<td>椭圆的y半径</td>
+</tr>
+<tr>
+<td>cx</td>
+<td>椭圆中心的x位置</td>
+</tr>
+<tr>
+<td>cy</td>
+<td>椭圆中心的y位置</td>
+</tr>
+</tbody></table>
+<h3 id="线条"><a href="#线条" class="headerlink" title="线条"></a>线条</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;10&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;50&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;110&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;150&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x1</td>
+<td>起点的x位置</td>
+</tr>
+<tr>
+<td>y1</td>
+<td>起点的y位置</td>
+</tr>
+<tr>
+<td>x2</td>
+<td>终点的x位置</td>
+</tr>
+<tr>
+<td>y2</td>
+<td>终点的y位置</td>
+</tr>
+</tbody></table>
+<h3 id="折线"><a href="#折线" class="headerlink" title="折线"></a>折线</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">polyline</span> <span class="attr">points</span>=<span class="string">&quot;60 110, 65 120, 70 115, 75 130, 80 125, 85 140, 90 135, 95 150, 100 145&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>points</code>点集数列。每个数字用空白、逗号、终止命令符或者换行符分隔开。每个点必须包含2个数字，一个是x坐标，一个是y坐标。所以点列表 (0,0), (1,1) 和(2,2)可以写成这样：“0 0, 1 1, 2 2”。</p>
+<h3 id="多边形"><a href="#多边形" class="headerlink" title="多边形"></a>多边形</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">polygon</span> <span class="attr">points</span>=<span class="string">&quot;50 160, 55 180, 70 180, 60 190, 65 205, 50 195, 35 205, 40 190, 30 180, 45 180&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>points</code>点集数列。每个数字用空白符、逗号、终止命令或者换行符分隔开。每个点必须包含2个数字，一个是x坐标，一个是y坐标。所以点列表 (0,0), (1,1) 和(2,2)可以写成这样：“0 0, 1 1, 2 2”。路径绘制完后闭合图形，所以最终的直线将从位置(2,2)连接到位置(0,0)。</p>
+<h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M150 0 L75 200 L225 200 Z&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>参数含义：</p>
+<ul>
+<li>M = moveto</li>
+<li>L = lineto</li>
+<li>H = horizontal lineto</li>
+<li>V = vertical lineto</li>
+<li>C = curveto</li>
+<li>S = smooth curveto</li>
+<li>Q = quadratic Bézier curve</li>
+<li>T = smooth quadratic Bézier curveto</li>
+<li>A = elliptical Arc</li>
+<li>Z = closepath<blockquote>
+<p>以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h4><ol>
+<li><p>三次贝塞尔曲线</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 语法</span><br><span class="line">C x1 y1, x2 y2, x y (or c dx1 dy1, dx2 dy2, dx dy)</span><br><span class="line"></span><br><span class="line">// 举例</span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M70 10 C 70 20, 120 20, 120 10&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;black&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;transparent&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后一个坐标(x,y)表示的是曲线的终点，另外两个坐标是控制点，(x1,y1)是起点的控制点，(x2,y2)是终点的控制点</p>
+</li>
+<li><p>三次贝塞尔曲线简化</p>
+</li>
+</ol>
+<p>一般情况下，三次贝塞尔曲线的两个控制点对称，因此可以简化只写一个控制点。语法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S x2 y2, x y (or s dx2 dy2, dx dy)</span><br></pre></td></tr></table></figure>
+<p>当S命令之前是C或者S命令的时候，这里的第一个控制点将是前面曲线的第二个控制点的中心对称点。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;black&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;transparent&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>二次贝塞尔曲线</li>
+</ol>
+<p>二次贝塞尔曲线仅需要一个控制点，来确认起点和终点的曲线斜率</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 语法</span><br><span class="line"> Q x1 y1, x y (or q dx1 dy1, dx dy)</span><br><span class="line"></span><br><span class="line">// 举例</span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M10 80 Q 95 10 180 80&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;black&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;transparent&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>二次贝塞尔曲线简化</li>
+</ol>
+<p>当此前已有Q命令的时候，可以省去控制点，自动推算出一个新的控制点。如果此前无Q命令，则推算的控制点为终点，画出来的为直线。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 语法</span><br><span class="line">T x y (or t dx dy)</span><br><span class="line"></span><br><span class="line">// 举例</span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M10 80 Q 52.5 10, 95 80 T 180 80&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;black&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;transparent&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="弧形"><a href="#弧形" class="headerlink" title="弧形"></a>弧形</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 语法</span><br><span class="line"> A rx ry x-axis-rotation large-arc-flag sweep-flag x y</span><br><span class="line"> a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy</span><br><span class="line"></span><br><span class="line">// 举例</span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M10 315</span></span></span><br><span class="line"><span class="string"><span class="tag">           L 110 215</span></span></span><br><span class="line"><span class="string"><span class="tag">           A 30 50 0 0 1 162.55 162.45</span></span></span><br><span class="line"><span class="string"><span class="tag">           L 172.55 152.45</span></span></span><br><span class="line"><span class="string"><span class="tag">           A 30 50 -45 0 1 215.1 109.9</span></span></span><br><span class="line"><span class="string"><span class="tag">           L 315 10&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;black&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;green&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;2&quot;</span> <span class="attr">fill-opacity</span>=<span class="string">&quot;0.5&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>参数的含义：<br><code>rx、ry</code>表示椭圆的x轴和y轴的半径<br><code>x-axis-rotation</code>表示x轴旋转角度，0则表示弧形所在的椭圆是正置的<br><code>large-arc-flag</code>决定弧线是大于还是小于180度，0表示小角度弧，1表示大角度弧<br><code>sweep-flag</code>表示弧线的方向，0表示从起点到终点沿逆时针画弧，1表示从起点到终点沿顺时针画弧</p>
+<h2 id="填充与边框"><a href="#填充与边框" class="headerlink" title="填充与边框"></a>填充与边框</h2><p>常用参数列举：</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fill</td>
+<td>填充色</td>
+</tr>
+<tr>
+<td>stroke</td>
+<td>描边色</td>
+</tr>
+<tr>
+<td>fill-opacity</td>
+<td>填充色的不透明度</td>
+</tr>
+<tr>
+<td>stroke-opacity</td>
+<td>描边色的不透明度</td>
+</tr>
+<tr>
+<td>stroke-width</td>
+<td>描边宽度</td>
+</tr>
+<tr>
+<td>stroke-linecap</td>
+<td>边框终点的形状：</td>
+</tr>
+<tr>
+<td><code>butt</code>直边结束线段，它是常规做法，线段边界90度垂直于描边的方向、贯穿它的终点</td>
+<td></td>
+</tr>
+<tr>
+<td><code>square</code>的效果差不多，但是会稍微超出实际路径的范围，超出的大小由stroke-width控制</td>
+<td></td>
+</tr>
+<tr>
+<td><code>round</code>表示边框的终点是圆角，圆角的半径也是由stroke-width控制的</td>
+<td></td>
+</tr>
+<tr>
+<td>stroke-linejoin</td>
+<td><code>miter</code>是默认值，表示用方形画笔在连接处形成尖角，<code>round</code>表示用圆角连接，实现平滑效果。<code>bevel</code>，连接处会形成一个斜接</td>
+</tr>
+<tr>
+<td>stroke-dasharray</td>
+<td>定义描边虚线类型，由一组用逗号分隔的数字组成。交替表示填色单位长度、空白单位长度。</td>
+</tr>
+</tbody></table>
+<p>举例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;150&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M 10 75 Q 50 10 100 75 T 190 75&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;black&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">stroke-linecap</span>=<span class="string">&quot;round&quot;</span> <span class="attr">stroke-dasharray</span>=<span class="string">&quot;5,10,5&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;none&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M 10 75 L 190 75&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;red&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">stroke-linecap</span>=<span class="string">&quot;round&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;1&quot;</span> <span class="attr">stroke-dasharray</span>=<span class="string">&quot;5,5&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;none&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><p>定义在<code>&lt;defs&gt;</code>标签内，指定id，其他元素通过id引用。可以用于<code>fill</code>、<code>stroke</code></p>
+<h3 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;120&quot;</span> <span class="attr">height</span>=<span class="string">&quot;240&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">      // 默认水平渐变</span><br><span class="line">      <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">&quot;Gradient1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">class</span>=<span class="string">&quot;stop1&quot;</span> <span class="attr">offset</span>=<span class="string">&quot;0%&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">class</span>=<span class="string">&quot;stop2&quot;</span> <span class="attr">offset</span>=<span class="string">&quot;50%&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">class</span>=<span class="string">&quot;stop3&quot;</span> <span class="attr">offset</span>=<span class="string">&quot;100%&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      // 垂直渐变</span><br><span class="line">      <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">&quot;Gradient2&quot;</span> <span class="attr">x1</span>=<span class="string">&quot;0&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;0%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;red&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;black&quot;</span> <span class="attr">stop-opacity</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;blue&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      // 通过样式执行</span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="xml">&lt;![CDATA[</span></span><br><span class="line"><span class="xml">        #rect1 &#123; fill: url(#Gradient1); &#125;</span></span><br><span class="line"><span class="xml">        .stop1 &#123; stop-color: red; &#125;</span></span><br><span class="line"><span class="xml">        .stop2 &#123; stop-color: black; stop-opacity: 0; &#125;</span></span><br><span class="line"><span class="xml">        .stop3 &#123; stop-color: blue; &#125;</span></span><br><span class="line"><span class="xml">      ]]&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">&quot;rect1&quot;</span> <span class="attr">x</span>=<span class="string">&quot;10&quot;</span> <span class="attr">y</span>=<span class="string">&quot;10&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;15&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;15&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;10&quot;</span> <span class="attr">y</span>=<span class="string">&quot;120&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;15&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;15&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;url(#Gradient2)&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>x1、x2、y1、y2指定了渐变的方向</p>
+<h3 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;120&quot;</span> <span class="attr">height</span>=<span class="string">&quot;240&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">radialGradient</span> <span class="attr">id</span>=<span class="string">&quot;RadialGradient1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;0%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;red&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;blue&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">radialGradient</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">radialGradient</span> <span class="attr">id</span>=<span class="string">&quot;RadialGradient2&quot;</span> <span class="attr">cx</span>=<span class="string">&quot;0.25&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;0.25&quot;</span> <span class="attr">r</span>=<span class="string">&quot;0.25&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;0%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;red&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;blue&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">radialGradient</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      // 指定渐变焦点</span><br><span class="line">      <span class="tag">&lt;<span class="name">radialGradient</span> <span class="attr">id</span>=<span class="string">&quot;Gradient&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">cx</span>=<span class="string">&quot;0.5&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;0.5&quot;</span> <span class="attr">r</span>=<span class="string">&quot;0.5&quot;</span> <span class="attr">fx</span>=<span class="string">&quot;0.25&quot;</span> <span class="attr">fy</span>=<span class="string">&quot;0.25&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;0%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;red&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;blue&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">radialGradient</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;10&quot;</span> <span class="attr">y</span>=<span class="string">&quot;10&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;15&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;15&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;url(#RadialGradient1)&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;10&quot;</span> <span class="attr">y</span>=<span class="string">&quot;120&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;15&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;15&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;url(#RadialGradient2)&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;10&quot;</span> <span class="attr">y</span>=<span class="string">&quot;10&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;15&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;15&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">fill</span>=<span class="string">&quot;url(#Gradient)&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;black&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>cx、cy、r 指定了镜像渐变的范围，fx、fy 指定了焦点，即渐变的中心点</p>
+<h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><p>x、y指定文本在视口中显示的位置。属性<code>text-anchor</code>指定文本流的方向，可选sstart、middle、end、inherit</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;10&quot;</span> <span class="attr">y</span>=<span class="string">&quot;10&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可使用的属性：font-family、font-style、font-weight、font-variant、font-stretch、font-size、font-size-adjust、kerning、letter-spacing、word-spacing和text-decoration<br>其他用法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// tspan指定子元素</span><br><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tspan</span> <span class="attr">font-weight</span>=<span class="string">&quot;bold&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;red&quot;</span>&gt;</span>This is bold and red<span class="tag">&lt;/<span class="name">tspan</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// tref引用已经定义的文本</span><br><span class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">id</span>=<span class="string">&quot;example&quot;</span>&gt;</span>This is an example text.<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tref</span> <span class="attr">xlink:href</span>=<span class="string">&quot;#example&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// textPath指定文字沿着路径环绕</span><br><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">id</span>=<span class="string">&quot;my_path&quot;</span> <span class="attr">d</span>=<span class="string">&quot;M 20,20 C 40,40 80,40 100,20&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;transparent&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">textPath</span> <span class="attr">xmlns:xlink</span>=<span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span> <span class="attr">xlink:href</span>=<span class="string">&quot;#my_path&quot;</span>&gt;</span></span><br><span class="line">    This text follows a curve.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">textPath</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="基础变形"><a href="#基础变形" class="headerlink" title="基础变形"></a>基础变形</h2><h3 id="元素"><a href="#元素" class="headerlink" title="元素"></a><g>元素</h3><p><g>元素用于将属性赋给整个元素集合</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">g</span> <span class="attr">fill</span>=<span class="string">&quot;red&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;10&quot;</span> <span class="attr">height</span>=<span class="string">&quot;10&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;10&quot;</span> <span class="attr">height</span>=<span class="string">&quot;10&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="平移translate"><a href="#平移translate" class="headerlink" title="平移translate"></a>平移<code>translate</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;10&quot;</span> <span class="attr">height</span>=<span class="string">&quot;10&quot;</span> <span class="attr">transform</span>=<span class="string">&quot;translate(30,40)&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="旋转rotate"><a href="#旋转rotate" class="headerlink" title="旋转rotate"></a>旋转<code>rotate</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y</span>=<span class="string">&quot;20&quot;</span> <span class="attr">width</span>=<span class="string">&quot;20&quot;</span> <span class="attr">height</span>=<span class="string">&quot;20&quot;</span> <span class="attr">transform</span>=<span class="string">&quot;rotate(45)&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他变换"><a href="#其他变换" class="headerlink" title="其他变换"></a>其他变换</h3><p><code>skewX()</code>x轴斜切<br><code>skewY()</code>y轴斜切<br><code>scale()</code>缩放</p>
+<h2 id="剪切和遮罩"><a href="#剪切和遮罩" class="headerlink" title="剪切和遮罩"></a>剪切和遮罩</h2><h3 id="剪切"><a href="#剪切" class="headerlink" title="剪切"></a>剪切</h3><p>在剪切范围内的元素才会显示，如下代码仅显示上半部的圆形</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">xmlns:xlink</span>=<span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">clipPath</span> <span class="attr">id</span>=<span class="string">&quot;cut-off-bottom&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">clipPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;100&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;100&quot;</span> <span class="attr">r</span>=<span class="string">&quot;100&quot;</span> <span class="attr">clip-path</span>=<span class="string">&quot;url(#cut-off-bottom)&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="遮罩"><a href="#遮罩" class="headerlink" title="遮罩"></a>遮罩</h3><p>以下代码使用渐变遮罩，水平方向不透明度从0到1，则红色的矩形从左到右逐渐显示，叠加后产生渐变效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">xmlns:xlink</span>=<span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">&quot;Gradient&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;0&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;white&quot;</span> <span class="attr">stop-opacity</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;1&quot;</span> <span class="attr">stop-color</span>=<span class="string">&quot;white&quot;</span> <span class="attr">stop-opacity</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mask</span> <span class="attr">id</span>=<span class="string">&quot;Mask&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;url(#Gradient)&quot;</span>  /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mask</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;green&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;red&quot;</span> <span class="attr">mask</span>=<span class="string">&quot;url(#Mask)&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="滤镜"><a href="#滤镜" class="headerlink" title="滤镜"></a>滤镜</h2><p>滤镜元素可参考mdn文档：<a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element#%E6%BB%A4%E9%95%9C%E5%85%83%E7%B4%A0" >https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element#%E6%BB%A4%E9%95%9C%E5%85%83%E7%B4%A0<i class="fas fa-external-link-alt"></i></a><br>以下列举一个阴影效果的代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span> <span class="attr">id</span>=<span class="string">&quot;f1&quot;</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200%&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">feOffset</span> <span class="attr">result</span>=<span class="string">&quot;offOut&quot;</span> <span class="attr">in</span>=<span class="string">&quot;SourceAlpha&quot;</span> <span class="attr">dx</span>=<span class="string">&quot;20&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;20&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">feGaussianBlur</span> <span class="attr">result</span>=<span class="string">&quot;blurOut&quot;</span> <span class="attr">in</span>=<span class="string">&quot;offOut&quot;</span> <span class="attr">stdDeviation</span>=<span class="string">&quot;10&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">feBlend</span> <span class="attr">in</span>=<span class="string">&quot;SourceGraphic&quot;</span> <span class="attr">in2</span>=<span class="string">&quot;blurOut&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;normal&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;90&quot;</span> <span class="attr">height</span>=<span class="string">&quot;90&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;green&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;3&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">fill</span>=<span class="string">&quot;yellow&quot;</span> <span class="attr">filter</span>=<span class="string">&quot;url(#f1)&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>feOffset</code>使用Alpha通道残影偏移，接着<code>feGaussianBlur</code>使用偏移的结果进行高斯模糊，最后<code>feBlend</code>将原图像和上一步模糊后的阴影结合生成最后的效果。</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;5cm&quot;</span> <span class="attr">height</span>=<span class="string">&quot;4cm&quot;</span> <span class="attr">version</span>=<span class="string">&quot;1.1&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">xmlns:xlink</span>= <span class="string">&quot;http://www.w3.org/1999/xlink&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">image</span> <span class="attr">xlink:href</span>=<span class="string">&quot;firefox.jpg&quot;</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">height</span>=<span class="string">&quot;50px&quot;</span> <span class="attr">width</span>=<span class="string">&quot;50px&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>如果你没有设置x属性或y属性，它们自动被设置为0。</li>
+<li>如果你没有设置height属性或width属性，它们自动被设置为0。</li>
+<li>如果width属性或height等于0，将不会呈现这个图像。</li>
+</ul>
+</blockquote>
+<h2 id="SVG-js的使用"><a href="#SVG-js的使用" class="headerlink" title="SVG.js的使用"></a>SVG.js的使用</h2><p>以上了解了svg基本的语法，但是自己绘制svg还是比较麻烦，这里记录下<code>SVG.js</code>库的使用，可以简化绘制流程。</p>
+<h3 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h3><p>可以cdn引入和npm安装，这里以Vue为例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @svgdotjs/svg.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;svg&quot;&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line">import &#123; SVG &#125; from &quot;@svgdotjs/svg.js&quot;</span><br><span class="line"></span><br><span class="line">onMounted(() =&gt; &#123;</span><br><span class="line">  // 通过addTo方法将SVG挂载到dom上，通过size设置大小</span><br><span class="line">  let draw = SVG().addTo(&quot;#svg&quot;).size(&quot;100%&quot;, &quot;100%&quot;);</span><br><span class="line">  </span><br><span class="line">  // 这里绘制一个100大小的矩形，并绑定了点击事件</span><br><span class="line">  draw.rect(100, 100).attr(&#123; fill: &quot;#00B1B6&quot; &#125;).click(function() &#123;</span><br><span class="line">    this.fill(&#x27;#ff0000&#x27;)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="常用绘图"><a href="#常用绘图" class="headerlink" title="常用绘图"></a>常用绘图</h3><p>绘图方法名称和svg形状名称基本一致，然后通过attr可设置属性，同时也可以通过属性名直接设置。使用方式和jQuery类似，支持链式调用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绘制矩形，设置矩形圆角</span></span><br><span class="line"><span class="keyword">var</span> rect = draw.rect(<span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">rect.radius(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制占据100，直径半径50的圆</span></span><br><span class="line">draw.circle(<span class="number">100</span>).radius(<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制长宽200/100的椭圆，x、y半径分别为75、50</span></span><br><span class="line"><span class="keyword">var</span> ellipse = draw.ellipse(<span class="number">200</span>, <span class="number">100</span>).radius(<span class="number">75</span>, <span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直线绘制</span></span><br><span class="line"><span class="keyword">var</span> line = draw.line(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">150</span>).stroke(&#123; <span class="attr">width</span>: <span class="number">1</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多线段绘制</span></span><br><span class="line"><span class="keyword">var</span> polyline = draw.polyline(<span class="string">&#x27;0,0 100,50 50,100&#x27;</span>).fill(<span class="string">&#x27;none&#x27;</span>).stroke(&#123; <span class="attr">width</span>: <span class="number">1</span> &#125;)</span><br><span class="line"><span class="keyword">var</span> polyline1 = draw.polyline([[<span class="number">0</span>,<span class="number">0</span>], [<span class="number">100</span>,<span class="number">50</span>], [<span class="number">50</span>,<span class="number">100</span>]])</span><br><span class="line"><span class="keyword">var</span> polyline2 = draw.polyline([<span class="number">0</span>,<span class="number">0</span>, <span class="number">100</span>,<span class="number">50</span>, <span class="number">50</span>,<span class="number">100</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路径的绘制</span></span><br><span class="line">draw.path(<span class="string">&#x27;M0 0 H50 A20 20 0 1 0 100 50 v25 C50 125 0 85 0 85 z&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图片绘制，图片加载后的回调处理</span></span><br><span class="line"><span class="keyword">var</span> image = draw.image(<span class="string">&#x27;/path/to/image.jpg&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// image loaded</span></span><br><span class="line">  <span class="comment">// this is the loading event for the underlying img element</span></span><br><span class="line">  <span class="comment">// you can access the natural width and height of the image with</span></span><br><span class="line">  <span class="comment">// event.target.naturalWidth, event.target.naturalHeight</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 线性渐变</span></span><br><span class="line"><span class="keyword">var</span> gradient = draw.gradient(<span class="string">&#x27;linear&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">add</span>) </span>&#123;</span><br><span class="line">  add.stop(<span class="number">0</span>, <span class="string">&#x27;#333&#x27;</span>)</span><br><span class="line">  add.stop(<span class="number">1</span>, <span class="string">&#x27;#fff&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">rect.fill(gradient)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 镜像渐变</span></span><br><span class="line"><span class="keyword">var</span> gradient = draw.gradient(<span class="string">&#x27;radial&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">add</span>) </span>&#123;</span><br><span class="line">  add.stop(<span class="number">0</span>, <span class="string">&#x27;#333&#x27;</span>)</span><br><span class="line">  add.stop(<span class="number">1</span>, <span class="string">&#x27;#fff&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gradient.from(<span class="number">0.5</span>, <span class="number">0.5</span>).to(<span class="number">0.5</span>, <span class="number">0.5</span>).radius(<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><ol>
+<li><p>通过attr</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 矩形根据左上角移动</span></span><br><span class="line">rect.attr(&#123; <span class="attr">x</span>: <span class="number">20</span>, <span class="attr">y</span>: <span class="number">60</span> &#125;)</span><br><span class="line"><span class="comment">// 圆形根据中心点移动</span></span><br><span class="line">circle.attr(&#123; <span class="attr">cx</span>: <span class="number">50</span>, <span class="attr">cy</span>: <span class="number">40</span> &#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>通过x、y坐标设置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过坐标轴移动方法时，均可以使用左上角和中心点，仅支持无单位坐标</span></span><br><span class="line">rect.cx(<span class="number">20</span>).cy(<span class="number">60</span>)</span><br><span class="line">circle.x(<span class="number">50</span>).y(<span class="number">40</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>通过move方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过move方法指定坐标，左上角基准</span></span><br><span class="line">rect.move(<span class="number">200</span>, <span class="number">350</span>)</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">rect.x(<span class="number">200</span>).y(<span class="number">350</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中心点移动</span></span><br><span class="line">rect.center(<span class="number">150</span>, <span class="number">150</span>)</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">rect.cx(<span class="number">200</span>).cy(<span class="number">350</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相对坐标移动</span></span><br><span class="line">rect.dmove(<span class="number">10</span>, <span class="number">30</span>)</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">rect.dx(<span class="number">10</span>).dy(<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p>动画使用<code>animate</code>方法，再调用<code>attr</code>、<code>move</code>等方法之前使用。以下为使用的举例：</p>
+</li>
+<li><p>默认</p>
+</li>
+</ol>
+<p>默认情况下<code>duration</code>将设置为<code>400</code>，<code>delay</code>将设置为<code>0</code>并<code>when</code>设置为<code>after</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rect.animate().move(<span class="number">150</span>, <span class="number">150</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>常用参数</li>
+</ol>
+<p>第一个是<code>duration</code>，第二个<code>delay</code>和第三个<code>when</code>。<br><code>when</code>参数的取值：</p>
+<ul>
+<li>now：在此调用执行后立即播放动画</li>
+<li>absolute或start：将动画安排到时间线上的绝对时间</li>
+<li>relative：安排动画相对于其旧开始时间播放（对 animate() 调用无用）</li>
+<li>last或after：在时间轴上最后一个动画之后播放动画。如果没有，则立即播放动画（请参阅now）<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rect.animate(<span class="number">2000</span>, <span class="number">1000</span>, <span class="string">&#x27;now&#x27;</span>).attr(&#123; <span class="attr">fill</span>: <span class="string">&#x27;#f03&#x27;</span> &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li><p>对象形式多参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">rect.animate(&#123;</span><br><span class="line">  <span class="attr">duration</span>: <span class="number">2000</span>,</span><br><span class="line">  <span class="attr">delay</span>: <span class="number">1000</span>,</span><br><span class="line">  <span class="attr">when</span>: <span class="string">&#x27;now&#x27;</span>,</span><br><span class="line">  <span class="attr">swing</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">times</span>: <span class="number">5</span>,</span><br><span class="line">  <span class="attr">wait</span>: <span class="number">200</span></span><br><span class="line">&#125;).attr(&#123; <span class="attr">fill</span>: <span class="string">&#x27;#f03&#x27;</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个动画链接在一起</span></span><br><span class="line">rect.animate().attr(&#123; <span class="attr">fill</span>: <span class="string">&#x27;#f03&#x27;</span> &#125;).animate().dmove(<span class="number">50</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动画之间添加延迟</span></span><br><span class="line">rect.animate().attr(&#123; <span class="attr">fill</span>: <span class="string">&#x27;#f03&#x27;</span> &#125;).delay(<span class="number">200</span>).animate().dmove(<span class="number">50</span>,<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接在动画里面加延迟</span></span><br><span class="line">rect.animate().attr(&#123; <span class="attr">fill</span>: <span class="string">&#x27;#f03&#x27;</span> &#125;).animate(&#123;<span class="attr">delay</span>: <span class="number">200</span>&#125;).dmove(<span class="number">50</span>,<span class="number">50</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>缓动设置</p>
+</li>
+</ol>
+<p>缓动类型包括：</p>
+<ul>
+<li><code>&lt;&gt;</code>: ease in and out</li>
+<li><code>&gt;</code>: ease out</li>
+<li><code>&lt;</code>: ease in</li>
+<li><code>-</code>: linear</li>
+<li>函数</li>
+<li><code>beziere(x1, y1, x2, y2)</code></li>
+<li><code>step(steps, stepPosition)</code> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">draw.circle(<span class="number">100</span>).radius(<span class="number">50</span>).fill(<span class="string">&quot;#ccB1B6&quot;</span>).animate(&#123; <span class="attr">duration</span>: <span class="number">2000</span> &#125;).ease(<span class="string">&#x27;&lt;&#x27;</span>).dmove(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3>支持常见事件的绑定，例如：click、dblclick、mousedown、mouseup、mousemove、mouseout、mousemove、touchstart、touchmove、touchleave、touchend、touchcancel等<h4 id="单事件绑定"><a href="#单事件绑定" class="headerlink" title="单事件绑定"></a>单事件绑定</h4>可直接通过事件名绑定：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">element.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.fill(&#123; <span class="attr">color</span>: <span class="string">&#x27;#f06&#x27;</span> &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解绑事件</span></span><br><span class="line">element.click(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="on绑定"><a href="#on绑定" class="headerlink" title="on绑定"></a>on绑定</h4>可通过on绑定单个或多个事件：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单个事件绑定</span></span><br><span class="line"><span class="keyword">var</span> click = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.fill(&#123; <span class="attr">color</span>: <span class="string">&#x27;#f06&#x27;</span> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">element.on(<span class="string">&#x27;click&#x27;</span>, click)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个事件绑定</span></span><br><span class="line">element.on([<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;mouseover&#x27;</span>], handler)</span><br><span class="line">element.on(<span class="string">&#x27;click mouseover&#x27;</span>, handler)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定上下文</span></span><br><span class="line">element.on(<span class="string">&#x27;click&#x27;</span>, click, <span class="built_in">window</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解绑事件</span></span><br><span class="line">element.off(<span class="string">&#x27;click&#x27;</span>, click)</span><br><span class="line">element.off(<span class="string">&#x27;click&#x27;</span>)</span><br><span class="line">element.off([<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;mouseover&#x27;</span>])</span><br><span class="line">element.off(<span class="string">&#x27;click mouseover&#x27;</span>)</span><br><span class="line">element.off()</span><br></pre></td></tr></table></figure>
+<h4 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h4>自定义事件的绑定：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.on(<span class="string">&#x27;myevent&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">&#x27;ta-da!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+事件和自定义事件可以通过<code>fire</code>、<code>dispatch</code>触发，区别在于<code>fire</code>返回element、而<code>dispatch</code>返回事件对象。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 触发事件</span></span><br><span class="line">element.fire(<span class="string">&#x27;myevent&#x27;</span>)</span><br><span class="line"><span class="comment">// 携带参数</span></span><br><span class="line">element.fire(<span class="string">&#x27;myevent&#x27;</span>, &#123;<span class="attr">some</span>:<span class="string">&#x27;data&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// dispatch的使用</span></span><br><span class="line"><span class="keyword">var</span> event = element.dispatch(event)</span><br></pre></td></tr></table></figure>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2>除了SVG.js外还有其他的库可以方便操作svg，也可以自己封装一些常用的操作。这里再推荐一个草绘风格的绘图库，<a class="link"   target="_blank" rel="noopener" href="https://roughjs.com/" >Rough.js<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/11/shell%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">shell学习记录</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Star Sea</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+            <div class="icp-info info-item"><a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn">鄂ICP备19020693号-3</a></div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%BD%A2%E7%8A%B6"><span class="nav-text">常用形状</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E5%BD%A2"><span class="nav-text">矩形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%86%E5%BD%A2"><span class="nav-text">圆形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86"><span class="nav-text">椭圆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%9D%A1"><span class="nav-text">线条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E7%BA%BF"><span class="nav-text">折线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="nav-text">多边形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-text">路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF"><span class="nav-text">贝塞尔曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%A7%E5%BD%A2"><span class="nav-text">弧形</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A1%AB%E5%85%85%E4%B8%8E%E8%BE%B9%E6%A1%86"><span class="nav-text">填充与边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%90%E5%8F%98"><span class="nav-text">渐变</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98"><span class="nav-text">线性渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98"><span class="nav-text">径向渐变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E5%AD%97"><span class="nav-text">文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%8F%98%E5%BD%A2"><span class="nav-text">基础变形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%B4%A0"><span class="nav-text">元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E7%A7%BBtranslate"><span class="nav-text">平移translate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%8B%E8%BD%ACrotate"><span class="nav-text">旋转rotate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8F%98%E6%8D%A2"><span class="nav-text">其他变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AA%E5%88%87%E5%92%8C%E9%81%AE%E7%BD%A9"><span class="nav-text">剪切和遮罩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AA%E5%88%87"><span class="nav-text">剪切</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%AE%E7%BD%A9"><span class="nav-text">遮罩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%A4%E9%95%9C"><span class="nav-text">滤镜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87"><span class="nav-text">图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVG-js%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">SVG.js的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8"><span class="nav-text">快速使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE"><span class="nav-text">常用绘图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE"><span class="nav-text">位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB"><span class="nav-text">动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6"><span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="nav-text">单事件绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#on%E7%BB%91%E5%AE%9A"><span class="nav-text">on绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6"><span class="nav-text">自定义事件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text">结语</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
